@@ -13,13 +13,14 @@ import (
 )
 
 const (
-	bucket = "grail-ysaito"
+	bucket = "grail-joshnewman"
+	prefix = "tmp/s3uploaderror"
 	nFile  = 1 // number of files to write to.
 )
 
 func upload(client *s3.S3, id int) {
 	r := rand.New(rand.NewSource(int64(id)))
-	key := aws.String(fmt.Sprintf("test%d", r.Intn(nFile)))
+	key := aws.String(fmt.Sprintf("%s/test%d", prefix, r.Intn(nFile)))
 
 	var uploadID string
 	{
